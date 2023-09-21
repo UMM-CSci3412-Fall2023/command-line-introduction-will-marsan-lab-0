@@ -1,35 +1,22 @@
 #!/bin/bash 
 
-#chmod +x extract_and_compile.sh
-# Check if the script has been given one argument
-
+# Accpets one argument 
 arg=$1
 
-#tar_file=$1
-
-SCRATCH=`mktemp --directory`
-
-#echo $SCRATCH
-
+# Extract the contents of NthPrime.tgz
 tar zxf NthPrime.tgz
 
+# Go to to NthPrime directory 
 cd NthPrime
 
+# Make main.c and nth_prime.c executable 
 gcc -o NthPrime main.c nth_prime.c
 
+# Not sure if these chmod's do anything that wasn't already 
+# done above but if it ain't broke don't fit it right?
 chmod +x main.c
 chmod +x nth_prime.c
 
+# Call the c programs with the argument accepted in the first step
 ./NthPrime $arg
 
-#rmdir $SCRATCH
-
-# Argument passed to the script
-# input_number="$1"
-
-# Extract the tar archive NthPrime.tgz into a directory named NthPrime
-#if ! tar -xzf NthPrime.tgz; then
-#    echo
-# "Error extracting the archive."
-#    exit 2
-#fi 
